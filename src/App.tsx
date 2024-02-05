@@ -1,23 +1,18 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { NextUIProvider } from '@nextui-org/react';
 import { Dashboard } from './pages';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Dashboard />,
-  },
-]);
+import { AppNavbar } from './components/ui';
 
 const App = () => {
+  const navigate = useNavigate();
+
   return (
-    <>
-      <div className="flex justify-center items-center">
-        <h1 className="text-3xl text-blue-950 font-bold bg-gray-300">
-          Hello world
-        </h1>
-      </div>
-      <RouterProvider router={router} />
-    </>
+    <NextUIProvider navigate={navigate}>
+      <AppNavbar />
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+      </Routes>
+    </NextUIProvider>
   );
 };
 
