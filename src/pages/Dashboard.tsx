@@ -14,7 +14,7 @@ export const Dashboard = () => {
   const userCount = users ? users.length : 0;
   return (
     <div className="container m-auto my-8">
-      <h1 className="text-3xl font-semibold">Dasboard</h1>
+      <h1 className="text-3xl font-semibold">Dashboard</h1>
       <Divider />
 
       <div className="m-auto my-4 flex gap-4 flex-wrap">

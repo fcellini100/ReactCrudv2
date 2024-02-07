@@ -8,9 +8,12 @@ const fetchUsers = async () => {
   return (await response.json()) as User[];
 };
 
+const queryConfig = {
+  queryKey: ['fetchUsers'],
+  queryFn: fetchUsers,
+  staleTime: 1000 * 60 * 5, // 5 minutes
+};
+
 export const useFetchUserData = () => {
-  return useQuery<User[]>({
-    queryKey: ['fetchUsers'],
-    queryFn: fetchUsers,
-  });
+  return useQuery<User[]>(queryConfig);
 };

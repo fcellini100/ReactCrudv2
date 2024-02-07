@@ -11,14 +11,22 @@ const renderWithProviders = (ui: React.ReactElement, { route = '/' } = {}) => {
   return render(ui, { wrapper: BrowserRouter });
 };
 
+const queryClient = new QueryClient();
+
 describe('App Component', () => {
   test('renders Dashboard component by default', () => {
-    renderWithProviders(<App />);
-    expect(screen.getByText('Hello Component works!')).toBeInTheDocument();
+    const element: React.ReactElement = (
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+    );
+    renderWithProviders(element);
+    const heading = screen.getByRole('heading', { level: 1 });
+    expect(heading).toBeInTheDocument();
+    expect(heading).toHaveTextContent('Dashboard');
   });
 
   test('navigates to UserList component', async () => {
-    const queryClient = new QueryClient();
     const element: React.ReactElement = (
       <QueryClientProvider client={queryClient}>
         <App />
