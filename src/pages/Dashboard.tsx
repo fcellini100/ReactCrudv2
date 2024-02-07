@@ -1,3 +1,3 @@
 export const Dashboard = () => {
-  return <div>Hello</div>;
+  return <h1>Hello Component works!</h1>;
 };

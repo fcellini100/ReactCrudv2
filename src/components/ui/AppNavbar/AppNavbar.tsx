@@ -3,56 +3,40 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
+  Link,
   NavbarMenuToggle,
-  NavbarMenu,
   NavbarMenuItem,
+  NavbarMenu,
 } from '@nextui-org/react';
+import { Brackets } from 'lucide-react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import './AppNavbar.css';
 
 export const AppNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const menuItems = [
-    'Profile',
-    'Dashboard',
-    'Activity',
-    'Analytics',
-    'System',
-    'Deployments',
-    'My Settings',
-    'Team Settings',
-    'Help & Feedback',
-    'Log Out',
-  ];
+  const menuItems = ['Dashboard', 'Users'];
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
+    <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="full" isBordered>
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           className="sm:hidden"
         />
         <NavbarBrand>
-          <p className="font-bold text-inherit">ACME</p>
+          <p className="font-bold text-inherit">React CRUD</p>
+          <Brackets />
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
-          <Link color="foreground" to="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link to="#" aria-current="page">
-            Customers
-          </Link>
+          <NavLink to="/">Dashboard</NavLink>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" to="#">
-            Integrations
-          </Link>
+          <NavLink to="/users">Users</NavLink>
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu>
@@ -67,7 +51,8 @@ export const AppNavbar = () => {
                     : 'foreground'
               }
               className="w-full"
-              to="#"
+              href="#"
+              size="lg"
             >
               {item}
             </Link>

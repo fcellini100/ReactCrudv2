@@ -1,0 +1,3 @@
+a.active {
+  @apply text-blue-600 font-semibold underline underline-offset-8;
+}
